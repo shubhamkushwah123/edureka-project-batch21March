@@ -1,0 +1,15 @@
+- hosts: all
+  become: true
+
+  tasks:
+  - name: update apt
+    command: apt update
+
+  - name: install docker engine
+    command: apt install -y docker.io
+ 
+  - name: start docker service
+    command: systemctl start docker
+
+  - name: deploy addressbook container to aws
+    command: docker run -itd -p 8005:8080 shubhamkushwah123/addressbook:7.0
